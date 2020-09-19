@@ -1,0 +1,26 @@
+<section class="day-list">
+    <mat-button-toggle-group name="wether" *ngFor="let day of weatherData['daily']; let i = index;">
+        <mat-button-toggle [value]="day" (click)="getSelectedDay(day, i)">
+            <ul class="day-detail-list">
+                <li>
+                    <strong>{{ getDay(day.dt)}}</strong>
+                </li>
+                <li class="temp">
+                    {{getCelcius(day.temp.day)}} &#x2103;
+                </li>
+                <li class="img">
+                    <img src="../../../assets/images/{{day.weather[0].main.toLowerCase()}}-small.png"
+                        alt="{{day.weather[0].main.toLowerCase()}}">
+                </li>
+                <li class="light-font">
+                    {{day.weather[0].main}}
+                </li>
+            </ul>
+
+        </mat-button-toggle>
+
+    </mat-button-toggle-group>
+
+</section>
+<app-visual-data *ngIf="selectedDay" [selectedDay]="selectedDay" [weatherData]="weatherData" [hourlyData]="hourlyData">
+</app-visual-data>

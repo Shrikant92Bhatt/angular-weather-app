@@ -1,0 +1,90 @@
+<mat-card class="head-card class-with-custom-shadow">
+    <mat-card-header>
+        <mat-card-title>
+            <strong class="current-temp">{{getCelcius(selectedDay.temp.day) }} &#x2103;</strong>
+            <span class="img-head-wrap">
+                <img src="../../../assets/images/{{selectedDay.weather[0].main.toLowerCase()}}.png"
+                    alt="{{selectedDay.weather[0].main}}-weather">
+            </span>
+        </mat-card-title>
+
+    </mat-card-header>
+
+
+
+    <mat-card-content>
+        <div class="chart-wrapper">
+            <ngx-charts-area-chart [view]="view" [scheme]="colorScheme" [legend]="legend"
+                [showXAxisLabel]="showXAxisLabel" [timeline]="true" [showYAxisLabel]="showYAxisLabel" [xAxis]="xAxis"
+                [yAxis]="false" [xAxisLabel]="xAxisLabel" [gradient]="true" [yAxisLabel]="yAxisLabel"
+                [timeline]="timeline" [schemeType]="schemeType" [results]="transformedData" (select)="onSelect($event)">
+                <ng-template #tooltipTemplate let-model="model">
+                    <div style="text-align: left;">
+                        <div>{{model.name}}</div>
+                        <div>Temp: {{model.value}} &#x2103;</div>
+                    </div>
+                </ng-template>
+                <ng-template #seriesTooltipTemplate let-model="model">
+                    <div style="text-align: left;">
+                        <div>{{model[0].name}}</div>
+                        <div><strong>Temp: {{model[0].value}} &#x2103;</strong> </div>
+                    </div>
+                </ng-template>
+            </ngx-charts-area-chart>
+        </div>
+
+        <div class="card-wrap clearfix">
+            <div class="card-item float-left">
+                <strong>Pressure</strong>
+                <span>
+                    {{selectedDay.pressure}} pha
+                </span>
+            </div>
+
+
+            <div class="card-item float-right">
+                <strong>Humidity</strong>
+                <span>
+                    {{selectedDay.humidity}} %
+                </span>
+            </div>
+        </div>
+
+        <div class="card-wrap sunrise-sunset clearfix">
+            <div class="card-item float-left">
+                <strong>Sunrise</strong>
+                <span>
+                    {{getTime(selectedDay.sunrise)}}
+                </span>
+            </div>
+
+
+            <div class="card-item float-right">
+                <strong>Sunset</strong>
+                <span>
+                    {{getTime(selectedDay.sunset)}}
+                </span>
+            </div>
+        </div>
+
+    </mat-card-content>
+    <mat-card-actions class="temp-chart-wrapper">
+        <ngx-charts-area-chart [view]="view" [scheme]="colorScheme1" [legend]="false" [showXAxisLabel]="showXAxisLabel"
+            [showYAxisLabel]="showYAxisLabel" [xAxis]="xAxis" [yAxis]="false" [xAxisLabel]="xAxisLabel"
+            [gradient]="true" [yAxisLabel]="false" [results]="dayTempData" (select)="onSelect($event)">
+            <ng-template #tooltipTemplate let-model="model">
+                <div style="text-align: left;">
+                    <div>{{model.name}}</div>
+                    <div>Temp: {{model.value}} &#x2103;</div>
+                </div>
+            </ng-template>
+            <ng-template #seriesTooltipTemplate let-model="model">
+                <div style="text-align: left;">
+                    <div>{{model[0].name}}</div>
+                    <div><strong>Temp: {{model[0].value}} &#x2103;</strong> </div>
+                </div>
+            </ng-template>
+        </ngx-charts-area-chart>
+    </mat-card-actions>
+
+</mat-card>

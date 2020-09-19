@@ -1,0 +1,37 @@
+<form class="search-form class-with-custom-shadow">
+  <div class="search-wrap">
+    <span class="img">
+      <img src="../../../../assets/images/pin.png" alt="pin">
+    </span>
+    <input type="text" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto"
+      class="search-input" (input)=citySearch($event)>
+    <button type="submit" class="btn">
+      <img src="../../../../assets/images/search.png" alt="search">
+    </button>
+  </div>
+
+  <mat-autocomplete #auto="matAutocomplete">
+    <mat-option *ngFor="let option of filteredOptions | async" [value]="option['city-name']"
+      (click)="selectedCity(option)">
+      <div class="option-wrapper">
+        <div class="left-optio">
+          {{option['city-name']}}
+        </div>
+        <div class="right-option">
+          <ul class="right-option-list">
+            <li>{{getCelcius(option.current.temp)}}</li>
+            <li class="light-font">{{option.current.weather[0].main}}</li>
+          </ul>
+
+          <span class="img">
+            <img src="../../../../assets/images/{{option.current.weather[0].main.toLowerCase()}}-small.png"
+              alt="{{option.current.weather[0].main}}" srcset="">
+          </span>
+
+
+        </div>
+      </div>
+    </mat-option>
+  </mat-autocomplete>
+</form>
+<app-day-list *ngIf="hasData()" [wetherData]="locationService.weatherDataJson "></app-day-list>

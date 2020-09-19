@@ -1,0 +1,65 @@
+@import '~@angular/material/theming'
+
+.mat-card
+    background-color: #ffffff
+    color: #000
+
+.class-with-custom-shadow
+    -webkit-box-shadow: 0 0 10px #696565
+    box-shadow: 0 0 10px #696565
+
+.current-temp
+    display: inline-block
+    font-size: 32px
+    font-weight: 600
+.img-head-wrap
+    display: inline-block
+    vertical-align: middle
+    margin-left: 10px
+    width: 115px
+    img
+        max-width: 100%
+
+.chart-wrapper
+    display: flex
+    width: 100%
+    min-height: 250px
+    max-height: 500px
+
+.flex-dev
+    display: flex
+.card-wrap
+    display: block
+    .card-item
+        display: block
+        float: left
+        padding: 10px 25px
+        background-color: #e6ffff
+        text-align: left
+        width: 110px
+        border-radius: 18px
+        strong
+            display: block
+            font-size: 14px
+            font-weight: 500
+.sunrise-sunset
+    .card-item
+        color: #000000
+        background: #ffffff
+.temp-chart-wrapper
+    display: flex
+
+.float-left
+    float: left !important
+.float-right
+    float: right !important
+
+@media (min-width: 319px) and (max-width: 450px)
+    .current-temp
+        font-size: 28px
+
+    .img-head-wrap
+        width: 70px
+    .card-wrap
+        .card-item
+            width: 80px
